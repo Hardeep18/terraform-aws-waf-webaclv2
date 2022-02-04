@@ -1448,7 +1448,7 @@ resource "aws_wafv2_web_acl_association" "alb_list" {
 # WAFv2 web acl association with Cloudfront
 #####
 
-resource "aws_wafv2_web_acl_association" "main" {
+resource "aws_wafv2_web_acl_association" "cloudfront_main" {
   count = var.enabled && var.create_cloudfront_association && length(var.cloudfront_arn_list) == 0 ? 1 : 0
 
   resource_arn = var.cloudfront_arn
@@ -1457,7 +1457,7 @@ resource "aws_wafv2_web_acl_association" "main" {
   depends_on = [aws_wafv2_web_acl.main]
 }
 
-resource "aws_wafv2_web_acl_association" "alb_list" {
+resource "aws_wafv2_web_acl_association" "cloudfront_list" {
   count = var.enabled && var.create_cloudfront_association && length(var.cloudfront_arn_list) > 0 ? length(var.cloudfront_arn_list) : 0
 
   resource_arn = var.alb_arn_list[count.index]
