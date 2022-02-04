@@ -21,6 +21,25 @@ variable "alb_arn_list" {
   default     = []
 }
 
+variable "cloudfront_arn" {
+  type        = string
+  description = "Cloudfront ARN"
+  default     = ""
+}
+
+variable "cloudfront_arn_list" {
+  type        = list(string)
+  description = "Cloudfront ARN list"
+  default     = []
+}
+
+variable "create_cloudfront_association" {
+  type        = bool
+  description = "Whether to create cloudfront association with WAF web acl"
+  default     = true
+}
+
+
 variable "tags" {
   description = "A map of tags (key-value pairs) passed to resources."
   type        = map(string)
